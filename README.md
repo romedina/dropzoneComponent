@@ -1,2 +1,0 @@
-# dropzoneComponent
-Created with CodeSandbox
