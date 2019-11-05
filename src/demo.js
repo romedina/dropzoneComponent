@@ -23,27 +23,6 @@ const useStyles = makeStyles(theme => ({
     flexWrap: "wrap",
     marginTop: 16
   },
-  thumb: {
-    display: "inline-flex",
-    borderRadius: 2,
-    border: "1px solid #eaeaea",
-    marginBottom: 8,
-    marginRight: 8,
-    width: 100,
-    height: 100,
-    padding: 4,
-    boxSizing: "border-box",
-    transition: "0.3s",
-    "&:hover": {
-      cursor: "pointer",
-      boxShadow: "2px 2px 3px rgba(0,0,0,0.4)"
-    }
-  },
-  thumbInner: {
-    display: "flex",
-    minWidth: 0,
-    overflow: "hidden"
-  },
   modal: {
     display: "flex",
     alignItems: "center",
@@ -95,8 +74,6 @@ export function DropZoneComp() {
   const [open, setOpen] = React.useState(false);
   const [modalToRender, setModalToRender] = React.useState("");
 
-  console.log(modalToRender);
-
   const handleOpen = () => {
     setOpen(true);
   };
@@ -125,6 +102,12 @@ export function DropZoneComp() {
     setFiles({ ...files, ...keeppedFiles });
   }
 
+  function delFile(newFiles) {
+    setFiles({ ...newFiles });
+  }
+
+  console.log(files);
+
   function renderFiles() {
     let imgSources = [];
     let fileKeys = [];
@@ -143,6 +126,7 @@ export function DropZoneComp() {
             fileKey={fileKeys[index]}
             files={files}
             setFiles={setFiles}
+            delFile={delFile}
           >
             {element}
           </ThumbComponent>
@@ -199,6 +183,8 @@ export function DropZoneComp() {
       </Grid>
     </React.Fragment>
   );
+
+  console.log(files);
 
   return (
     <React.Fragment>

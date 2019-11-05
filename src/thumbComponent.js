@@ -7,17 +7,6 @@ const wdLightPurple = "#F9F7FC";
 const wdDarkPurple = "#E0D7EE";
 
 const useStyles = makeStyles(theme => ({
-  subtitleText: {
-    color: wdPurpleSubtitle,
-    fontWeight: 700
-  },
-  //styles from demo dropzone
-  thumbsContainer: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    marginTop: 16
-  },
   thumb: {
     display: "inline-flex",
     borderRadius: 2,
@@ -87,6 +76,7 @@ export const ThumbComponent = props => {
   const classes = useStyles();
 
   const [isCompVisible, setIsCompVisible] = React.useState(true);
+  //const [auxObj,setAuxObj] = React.useState({});
 
   const handleModal = () => {
     props.modalSetter(props.children);
@@ -95,10 +85,16 @@ export const ThumbComponent = props => {
 
   const handleDel = () => {
     let auxObj = props.files;
-    //delete files[props.fileKey];
-    props.setFiles(auxObj);
+    delete auxObj[props.fileKey];
+
+    props.delFile(auxObj);
+
     setIsCompVisible(false);
   };
+
+  // useEffect(()=>{
+
+  // })
 
   return (
     <React.Fragment>
